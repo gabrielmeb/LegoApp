@@ -1,104 +1,77 @@
-/********************************************************************************** 
- * WEB322 – Assignment 02* I declare that this assignment is my own work in accordance
- * with Seneca Academic Policy.No part of this assignment has been copied manually or 
- * electronically from any other source* (including 3rd party web sites) 
- * or distributed to other students.
- * 
- * Name: Gabriel Mebratu Student ID: 124911223 Date: Oct 1, 2023
- * 
- * Online (Cyclic) Link:
- * 
- * *********************************************************************************/
+/********************************************************************************
+* WEB322 – Assignment 03
+*
+* I declare that this assignment is my own work in accordance with Seneca's
+* Academic Integrity Policy:
+*
+* https://www.senecacollege.ca/about/policies/academic-integrity-policy.html
+*
+* Name: Gabriel Mebratu 
+* Student ID: 144000205 
+* Date: October 13, 2023
+*
+* Published URL: 
+*
+********************************************************************************/
 
+const express = require('express');
+const path = require('path');
+const legoData = require('./modules/legoSets');
 
-var express = require("express");
-var path = require("path");
-var dataSrv = require("./data-service.js");
+const app = express();
+const HTTP_PORT = process.env.PORT || 8080;
 
-var app = express();
-app.use(express.static('public/css')); //to recognize the css files
-app.use(express.static('img')); 
+app.use(express.static('public')); // Set static folder
 
-var HTTP_PORT = process.env.PORT || 8080;
+// Serve the home page
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, '/views/home.html'));
+});
 
-// call this function after the http server starts listening for requests
-function onHttpStart() {
-  console.log("Express http server listening on: " + HTTP_PORT);
-}
+// Serve the about page
+app.get('/about', (req, res) => {
+  res.sendFile(path.join(__dirname, '/views/about.html'));
+});
 
-// setup a 'route' to listen on the default url path (http://localhost)
-app.get("/", function(req,res){
-    res.sendFile(path.join(__dirname,"/views/home.html"));
-  });
+// Retrieve LEGO sets by theme
+app.get('/lego/sets', async (req, res) => {
+  const theme = req.query.theme;
 
-app.get("/about", function(req,res){
-    res.sendFile(path.join(__dirname,"/views/about.html"));
-  });
+  try {
+    if (theme) {
+      const data = await legoData.getSetsByTheme(theme);
+      res.json(data);
+    } else {
+      const data = await legoData.getAllSets();
+      res.json(data);
+    }
+  } catch (err) {
+    res.status(404).send(`404 - ${err}`);
+  }
+});
 
+// Retrieve a LEGO set by setNum
+app.get('/lego/sets/:id', async (req, res) => {
+  const setNum = req.params.id;
 
-  /*
-  By only calling res.json() from within .then() or .catch() 
-  we can ensure that the data will be in place (no matter how long it took to retrieve) 
-  before the server sends anything back to the client */
-  //------------------------------------------------------------------
-  //------------------------------------------------------------------
- 
-  app.get("/employees", function(req,res){
-    dataSrv.getAllEmployees()
-                             .then((data) => {
-                               console.log ("getAllEmployees JSON.");
-                               res.json(data);
-                             })
-                             .catch((err) => {
-                               console.log(err);
-                               res.json(err);
-                             })
-  });
-  //------------------------------------------------------------------
-  //------------------------------------------------------------------
-  app.get("/managers", function(req,res){
-    dataSrv.getManagers()
-                             .then((data) => {
-                               console.log ("getVehicles JSON.");
-                               res.json(data);
-                             })
-                             .catch((err) => {
-                               console.log(err);
-                               res.json(err);
-                             })
-  });
-  //------------------------------------------------------------------
-  //------------------------------------------------------------------
-  app.get("/departments", function(req,res){
-   
-   dataSrv.getDepartments()
-                           .then((data) => {
-                               console.log ("getDepartments JSON.");
-                               res.json(data);
-                           })
-                           .catch((err) => {
-                               console.log(err);
-                               res.json(err);
-                           })
-  });
-  //------------------------------------------------------------------
-  //------------------------------------------------------------------
-  app.use(function (req, res) {
-    res.status(404).sendFile(path.join(__dirname,"/views/error404.html"));
+  try {
+    const data = await legoData.getSetByNum(setNum);
+    res.json(data);
+  } catch (err) {
+    res.status(404).send(`404 - ${err}`);
+  }
+});
+
+// 404 error handler
+app.use((req, res) => {
+  res.status(404).sendFile(path.join(__dirname, '/views/404.html'));
+});
+
+// Initialize LEGO data and start the server
+legoData.initialize()
+  .then(() => {
+    app.listen(HTTP_PORT, () => console.log(`Server listening on: ${HTTP_PORT}`));
   })
-  //------------------------------------------------------------------
-  //------------------------------------------------------------------
-
-//Call initialize method from data-service.js
-//------------------------------------------------------------------
-console.log ("Ready for initialize");
-dataSrv.initialize()
-                    .then(() => {
-                          console.log ("initialize.then");
-                          app.listen(HTTP_PORT, onHttpStart);  //start the server 
-                    })
-                    .catch(err => {
-                          console.log(err);
-                    })
-  //------------------------------------------------------------------
-  //------------------------------------------------------------------
+  .catch((err) => {
+    console.log(err);
+  });

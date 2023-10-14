@@ -1,71 +1,98 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-      <meta charset="UTF-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <meta http-equiv="X-UA-Compatible" content="ie=edge">
-      <!-- Latest compiled and minified Bootstrap 3.3.7 CSS -->
-      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-      <title>Home</title>
-      <link rel="shortcut icon"  href="icon.ico" />
-
-
-      <!--to make things pretty-->
-      <link rel="stylesheet" href="site.css">
-
-
-  </head>
-  <body>
-    <nav class="navbar navbar-default myheader">
-      <div class="container-fluid">
-        <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="navbar-header ">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <span class="navbar-brand" href="#">WEB322 - Gabriel Mebratu</span>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/css/main.css" />
+  <title>Lego Collection</title>
+</head>
+<body>
+  <!-- Navbar -->
+  <div class="navbar bg-base-100">
+    <div class="flex-1">
+      <a href="/" class="btn btn-ghost normal-case text-xl">Lego Collection</a>
+    </div>
+    <div class="navbar-center hidden lg:flex">
+      <ul class="menu menu-horizontal px-1">
+        <li><a href="/about">About</a></li>
+        <li>
+          <details>
+            <summary>Theme</summary>
+            <ul class="p-2 w-32 bg-base-100 right-0">
+              <li><a href="/lego/sets?theme=Technic">Technic</a></li>
+              <li><a href="/lego/sets?theme=Basic Set">Basic Set</a></li>
+              <li><a href="/lego/sets?theme=Icons">Icons</a></li>
+            </ul>
+          </details>
+        </li>
+      </ul>
+    </div>
+    <div class="dropdown">
+      <label tabindex="0" class="btn btn-ghost lg:hidden">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
+      </label>
+      <ul tabindex="0" class="menu menu-sm dropdown-content right-0 mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
+        <li><a href="/lego/sets?theme=Technic">Technic</a></li>
+        <li><a href="/lego/sets?theme=Basic Set">Basic Set</a></li>
+        <li><a href="/lego/sets?theme=Icons">Icons</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="container mx-auto p-4 lg:px-0"> 
+    <!-- Hero Section -->
+    <div class="hero py-8 bg-base-200 rounded-lg">
+      <div class="hero-content text-center">
+        <div class="max-w-md">
+          <h1 class="text-5xl font-bold">Welcome</h1>
+          <p class="py-6">Unleash your inner builder and embark on a fascinating journey through the colorful realm of Lego.</p>
+          <a href="/lego/sets"><button class="btn btn-primary">Get Started Now</button></a>
         </div>
-    
-        <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-          <ul class="nav navbar-nav">
-            <li class="active"><a href="#">Home</a></li>
-            <li><a href="/about">About</a></li>
-          </ul>
-          <ul class="nav navbar-nav navbar-right">
-            <li><a href="/vehicles">Vehicles</a></li>
-            <li><a href="/vehicles2023">Vehicles 2023</a></li>
-            <li><a href="/brands">Brands</a></li>
-          </ul>
-        </div><!-- /.navbar-collapse -->
-      </div><!-- /.container-fluid -->
-    </nav>
-    <div class="container">
-      <div class="row">
-        <aside class="col-md-3">
-          <h2>Coming Soon</h2>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam accumsan libero a sem venenatis pharetra.</p>
-        </aside>
-        <section class="main col-md-9">
-          <article>
-          <h2>Welcome</h2>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam accumsan libero a sem venenatis pharetra. Nulla facilisi. In semper blandit arcu. Nullam vitae sem convallis, vehicula nisi eu, hendrerit justo. Pellentesque libero neque, interdum nec diam bibendum, tristique pellentesque felis. Sed vel adipiscing lacus. Maecenas porta dolor a turpis aliquet, eget posuere nisi fringilla. Aenean ac turpis tristique, feugiat mi sodales, laoreet neque. Donec tristique nec quam sit amet sagittis. Mauris elementum ullamcorper risus at luctus.</p>
-          <p>Cras dui dui, suscipit ac massa et, fermentum lacinia lacus. Aliquam erat volutpat. Phasellus non tellus quis quam eleifend laoreet. Etiam luctus augue nec lectus consequat euismod. Nulla tristique augue a urna eleifend rutrum eget quis turpis. Curabitur consectetur aliquet lobortis. Donec id felis leo. Etiam ullamcorper augue justo, vitae tincidunt ipsum gravida vitae. Donec orci justo, vehicula rutrum mattis et, ornare ullamcorper mi. Mauris eget diam est.</p>
-          <p>Ut non diam varius ante dictum blandit nec in tortor. Pellentesque sodales vel elit eget cursus. In condimentum consequat mauris vel bibendum. Curabitur feugiat nibh in sodales condimentum. In sit amet hendrerit massa, sed porta ipsum. Praesent consectetur consectetur sem, at aliquam ante posuere ac. Sed sit amet quam egestas eros lobortis varius. Aenean eleifend nec turpis eget faucibus. Duis pretium consequat velit, quis eleifend leo laoreet non. Quisque sit amet lobortis urna. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; In nisi nibh, convallis eu metus et, adipiscing laoreet quam.</p>
-          <p>Duis egestas cursus diam, ut volutpat tortor mattis tempor. In et imperdiet turpis. Proin aliquet, lectus ultrices fringilla lobortis, purus risus imperdiet neque, eget consectetur ligula quam non arcu. Curabitur vitae posuere elit, in faucibus felis. Suspendisse vitae nisl eget ligula condimentum bibendum in ut nulla. Etiam non lacinia turpis. Aliquam placerat est vestibulum turpis pretium elementum. Integer pharetra gravida massa, at aliquam turpis pulvinar sit amet. Nam a lectus sed mauris suscipit commodo a non ipsum. Aenean dapibus porttitor massa vitae auctor. Donec quis ultricies orci. Etiam semper, lectus vitae tristique ullamcorper, risus lectus semper nulla, quis accumsan sem leo at neque.</p>
-          <p>Nullam vulputate lectus at nisi euismod, nec consectetur lorem elementum. Vestibulum id justo metus. Etiam id lacinia nulla. Fusce aliquet convallis mauris iaculis iaculis. Suspendisse et eleifend tortor. Nunc non tincidunt lorem. Integer consectetur magna felis, vel mattis diam varius id. Morbi elementum semper purus, nec ullamcorper neque mattis in. Nulla facilisi. Vivamus mollis justo eget urna bibendum sodales.</p>
-          </article>
-        </section>
       </div>
     </div>
+    <!-- Grid Section -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-8">
+      <!-- Set 1 -->
+      <div class="card w-full bg-base-100 shadow-xl">
+        <figure>
+          <img class="w-full h-64 object-cover" src="https://cdn.rebrickable.com/media/sets/001-1.jpg" alt="Gears Set" />
+        </figure>
+        <div class="card-body">
+          <h2 class="card-title">Gears</h2>
+          <p>This set was released in America (USA/CAN) by Samsonite in 1965. It was re-released in 1969 as an educational set (322-4). It was never released in Europe.</p>
+          <div class="card-actions justify-end">
+            <a href="/lego/sets/001-1"><button class="btn btn-primary">View</button></a>
+          </div>
+        </div>
+      </div>
 
-    <!-- Latest compiled and minified jQuery 3.2.1 JavaScript -->
-    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="crossorigin="anonymous"></script>
+      <!-- Set 2 -->
+      <div class="card w-full bg-base-100 shadow-xl">
+        <figure>
+          <img class="w-full h-64 object-cover" src="https://cdn.rebrickable.com/media/sets/0011-2.jpg" alt="Town Mini-Figures Set" />
+        </figure>
+        <div class="card-body">
+          <h2 class="card-title">Town Mini-Figures</h2>
+          <p>Presented to LEGO employees and business partners as a Christmas gift.</p>
+          <div class="card-actions justify-end">
+            <a href="/lego/sets/0011-2"><button class="btn btn-primary">View</button></a>
+          </div>
+        </div>
+      </div>
 
-    <!-- Latest compiled and minified Bootstrap 3.3.7 JavaScript -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-  </body>
+      <!-- Set 3 -->
+      <div class="card w-full bg-base-100 shadow-xl">
+        <figure>
+          <img class="w-full h-64 object-cover" src="https://cdn.rebrickable.com/media/sets/0011-3.jpg" alt="Castle 2 for 1 Bonus Offer Set" />
+        </figure>
+        <div class="card-body">
+          <h2 class="card-title">Castle 2 for 1 Bonus Offer</h2>
+          <p>This set was released in 1987.</p>
+          <div class="card-actions justify-end">
+            <a href="/lego/sets/0011-3"><button class="btn btn-primary">View</button></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
 </html>
