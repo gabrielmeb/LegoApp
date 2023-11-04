@@ -14,12 +14,13 @@
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: [`./views/*.html`], // all .html files
-  theme: {
-    extend: {},
+  content: [],
+    daisyui: {
+      themes: ["light", "dark", "ocean"],
   },
-  plugins: [require('@tailwindcss/typography'), require('daisyui')],
-  daisyui: {
-    themes: ['fantasy'],
-  },
+  plugins: [],
+  purge: ['./**/*.ejs'],
+  plugins: [
+    require('@tailwindcss/typography'), require('daisyui'),
+  ],
 }
