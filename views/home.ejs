@@ -1,98 +1,94 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="/css/main.css" />
-  <title>Lego Collection</title>
-</head>
-<body>
-  <!-- Navbar -->
-  <div class="navbar bg-base-100">
-    <div class="flex-1">
-      <a href="/" class="btn btn-ghost normal-case text-xl">Lego Collection</a>
-    </div>
-    <div class="navbar-center hidden lg:flex">
-      <ul class="menu menu-horizontal px-1">
-        <li><a href="/about">About</a></li>
-        <li>
-          <details>
-            <summary>Theme</summary>
-            <ul class="p-2 w-32 bg-base-100 right-0">
-              <li><a href="/lego/sets?theme=Technic">Technic</a></li>
-              <li><a href="/lego/sets?theme=Basic Set">Basic Set</a></li>
-              <li><a href="/lego/sets?theme=Icons">Icons</a></li>
-            </ul>
-          </details>
-        </li>
-      </ul>
-    </div>
-    <div class="dropdown">
-      <label tabindex="0" class="btn btn-ghost lg:hidden">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
-      </label>
-      <ul tabindex="0" class="menu menu-sm dropdown-content right-0 mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
-        <li><a href="/lego/sets?theme=Technic">Technic</a></li>
-        <li><a href="/lego/sets?theme=Basic Set">Basic Set</a></li>
-        <li><a href="/lego/sets?theme=Icons">Icons</a></li>
-      </ul>
-    </div>
-  </div>
-  <div class="container mx-auto p-4 lg:px-0"> 
-    <!-- Hero Section -->
-    <div class="hero py-8 bg-base-200 rounded-lg">
-      <div class="hero-content text-center">
-        <div class="max-w-md">
-          <h1 class="text-5xl font-bold">Welcome</h1>
-          <p class="py-6">Unleash your inner builder and embark on a fascinating journey through the colorful realm of Lego.</p>
-          <a href="/lego/sets"><button class="btn btn-primary">Get Started Now</button></a>
-        </div>
-      </div>
-    </div>
-    <!-- Grid Section -->
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-8">
-      <!-- Set 1 -->
-      <div class="card w-full bg-base-100 shadow-xl">
-        <figure>
-          <img class="w-full h-64 object-cover" src="https://cdn.rebrickable.com/media/sets/001-1.jpg" alt="Gears Set" />
-        </figure>
-        <div class="card-body">
-          <h2 class="card-title">Gears</h2>
-          <p>This set was released in America (USA/CAN) by Samsonite in 1965. It was re-released in 1969 as an educational set (322-4). It was never released in Europe.</p>
-          <div class="card-actions justify-end">
-            <a href="/lego/sets/001-1"><button class="btn btn-primary">View</button></a>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lego Collection</title>
+    <link rel="stylesheet" href="/css/main.css" />
+  </head>
+
+  <body tabindex="-1">
+    <%- include('partials/navbar', {page: ''}) %>
+
+    <br />
+
+    <div class="container mx-auto">
+      <div class="hero bg-base-200 rounded-lg p-6">
+        <div class="hero-content text-center">
+          <div class="max-w-md">
+            <h1 class="text-5xl font-bold">Welcome</h1>
+
+            <p class="py-6">
+              Unleash your inner builder and embark on a fascinating journey through the colorful realm of Lego.
+            </p>
+
+            <a href="/lego/sets" class="btn btn-primary">Get Started Now</a>
           </div>
         </div>
       </div>
 
-      <!-- Set 2 -->
-      <div class="card w-full bg-base-100 shadow-xl">
-        <figure>
-          <img class="w-full h-64 object-cover" src="https://cdn.rebrickable.com/media/sets/0011-2.jpg" alt="Town Mini-Figures Set" />
-        </figure>
-        <div class="card-body">
-          <h2 class="card-title">Town Mini-Figures</h2>
-          <p>Presented to LEGO employees and business partners as a Christmas gift.</p>
-          <div class="card-actions justify-end">
-            <a href="/lego/sets/0011-2"><button class="btn btn-primary">View</button></a>
+      <br />
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div>
+          <div class="card bg-base-100 shadow-xl">
+            <figure>
+              <img
+                class="w-full"
+                src="https://cdn.rebrickable.com/media/sets/003-1.jpg"
+                alt="Lego set"
+              />
+            </figure>
+            <div class="card-body">
+              <h2 class="card-title">Gears</h2>
+              <p>
+                This set was released in America (USA/CAN) by Samsonite in 1965.
+              </p>
+              <div class="card-actions justify-end">
+                <a href="/lego/sets/003-1" class="btn btn-primary">View</a>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
-
-      <!-- Set 3 -->
-      <div class="card w-full bg-base-100 shadow-xl">
-        <figure>
-          <img class="w-full h-64 object-cover" src="https://cdn.rebrickable.com/media/sets/0011-3.jpg" alt="Castle 2 for 1 Bonus Offer Set" />
-        </figure>
-        <div class="card-body">
-          <h2 class="card-title">Castle 2 for 1 Bonus Offer</h2>
-          <p>This set was released in 1987.</p>
-          <div class="card-actions justify-end">
-            <a href="/lego/sets/0011-3"><button class="btn btn-primary">View</button></a>
+        <div>
+          <div class="card bg-base-100 shadow-xl">
+            <figure>
+              <img
+                class="w-full"
+                src="https://cdn.rebrickable.com/media/sets/0011-2.jpg"
+                alt="Lego Set"
+                style="width: 100%;" 
+              />
+            </figure>
+            <div class="card-body">
+              <h2 class="card-title">Town Mini-Figures</h2>
+              <p>The LEGO Town Minifigure Set offers a variety of mini figures with accessories for creative town-building adventures.</p>
+              <div class="card-actions justify-end">
+                <a href="/lego/sets/2011-2" class="btn btn-primary">View</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div>
+          <div class="card bg-base-100 shadow-xl">
+            <figure>
+              <img
+                class="w-full"
+                src="https://cdn.rebrickable.com/media/sets/0011-3.jpg"
+                alt="Lego Set"
+                style="width: 100%;" 
+              />
+            </figure>
+            <div class="card-body">
+              <h2 class="card-title">Castle 2 for 1 Bonus Offer</h2>
+              <p>The Castle 2 for 1 Bonus Offer includes two captivating LEGO Castle sets, providing double the medieval building and imaginative play opportunities</p>
+              <div class="card-actions justify-end">
+                <a href="/lego/sets/2011-3" class="btn btn-primary">View</a>
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
-</body>
+  </body>
 </html>

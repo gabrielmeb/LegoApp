@@ -1,66 +1,129 @@
-/********************************************************************************
-* WEB322 – Assignment 03
-*
-* I declare that this assignment is my own work in accordance with Seneca's
-* Academic Integrity Policy:
-*
-* https://www.senecacollege.ca/about/policies/academic-integrity-policy.html
-*
-* Name: Gabriel Mebratu 
-* Student ID: 144000205 
-* Date: October 13, 2023
-*
-********************************************************************************/
+/** @format */
 
-const setData = require("../data/setData");
-const themeData = require("../data/themeData");
+require("dotenv").config();
+const Sequelize = require("sequelize");
 
-const initialize = async () => {
-  const sets = setData.map((set) => {
-    const theme = themeData.find((theme) => theme.id === set.theme_id);
-    return { ...set, theme: theme.name };
+// Set up Sequelize to point to our PostgreSQL database
+const sequelize = new Sequelize(
+  process.env.DB_DATABASE,
+  process.env.DB_USER,
+  process.env.DB_PASSWORD,
+  {
+    host: process.env.DB_HOST,
+    dialect: "postgres",
+    port: 5432,
+    dialectOptions: {
+      ssl: { rejectUnauthorized: false },
+    },
+  }
+);
+
+// Define Theme model
+const Theme = sequelize.define(
+  "Theme",
+  {
+    id: {
+      type: Sequelize.INTEGER,
+      primaryKey: true,
+      autoIncrement: true,
+    },
+    name: Sequelize.STRING,
+  },
+  {
+    timestamps: false,
+  }
+);
+
+// Define Set model
+const Set = sequelize.define(
+  "Set",
+  {
+    set_num: {
+      type: Sequelize.STRING,
+      primaryKey: true,
+    },
+    name: Sequelize.STRING,
+    year: Sequelize.INTEGER,
+    num_parts: Sequelize.INTEGER,
+    theme_id: Sequelize.INTEGER,
+    img_url: Sequelize.STRING,
+  },
+  {
+    timestamps: false,
+  }
+);
+
+// Establish association between Set and Theme models
+Set.belongsTo(Theme, { foreignKey: "theme_id" });
+
+// Function to initialize the database
+function initialize() {
+  return new Promise(async (resolve, reject) => {
+    try {
+      await sequelize.sync();
+      resolve();
+    } catch (error) {
+      reject(error);
+    }
   });
+}
 
-  if (sets.length > 0) {
-    return sets;
-  } else {
-    throw new Error("Unable to read data");
-  }
-};
-
+// Function to get all sets with themes
 const getAllSets = async () => {
-  const sets = await initialize();
-  if (sets.length > 0) {
-    return sets;
-  } else {
-    throw new Error("No sets found");
-  }
+  return Set.findAll({ include: [Theme] });
 };
 
+// Function to get a set by set_num with its theme
 const getSetByNum = async (setNum) => {
-  const sets = await initialize();
-  const set = sets.find((s) => s.set_num === setNum);
-  if (set) {
-    return set;
-  } else {
-    throw new Error("Unable to find requested set");
-  }
+  return Set.findOne({
+    where: { set_num: setNum },
+    include: [Theme],
+  });
 };
 
+// Function to get sets by theme
 const getSetsByTheme = async (theme) => {
-  const sets = await initialize();
-  const input = theme.toLowerCase();
-  const filteredSets = sets.filter((set) => set.theme.toLowerCase().includes(input));
-  if (filteredSets.length > 0) {
-    return filteredSets;
-  } else {
-    throw new Error("Unable to find requested sets");
-  }
+  return Set.findAll({
+    where: { "$Theme.name$": { [Sequelize.Op.iLike]: `%${theme}%` } },
+    include: [Theme],
+  });
 };
 
-module.exports = { 
-  initialize, 
-  getAllSets, 
-  getSetByNum, 
-  getSetsByTheme 
+// Function to add a new set
+const addSet = async (setData) => {
+  return Set.create(setData);
+};
+
+// Function to get all themes
+const getAllThemes = async () => {
+  return Theme.findAll();
+};
+
+// Function to edit a set
+function editSet(setNum, setData) {
+  return Set.update(setData, {
+    where: {
+      set_num: setNum,
+    },
+  });
+}
+
+// Function to delete a set
+function deleteSet(setNum) {
+  return Set.destroy({
+    where: {
+      set_num: setNum,
+    },
+  });
+}
+
+module.exports = {
+  initialize,
+  getAllSets,
+  getSetByNum,
+  getSetsByTheme,
+  addSet,
+  getAllThemes,
+  editSet,
+  deleteSet,
 };
